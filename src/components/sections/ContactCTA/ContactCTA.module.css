@@ -1,0 +1,122 @@
+.section {
+  padding: clamp(3rem, 6vw, 5rem) 0;
+  background: var(--color-bg-alt);
+}
+
+.box {
+  background: var(--color-primary);
+  border-radius: var(--radius-lg);
+  padding: clamp(1.5rem, 4vw, 2.5rem) clamp(1rem, 3vw, 2rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(1.25rem, 3vw, 2rem);
+  text-align: center;
+}
+
+@media (min-width: 1024px) {
+  .box {
+    flex-direction: row;
+    text-align: left;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  max-width: 520px;
+}
+
+.label {
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.heading {
+  font-size: clamp(1.375rem, 2.5vw, 2rem);
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.2;
+}
+
+.text {
+  font-size: clamp(0.9375rem, 1.3vw, 1.0625rem);
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.65;
+}
+
+.note {
+  font-size: clamp(0.75rem, 1vw, 0.875rem);
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  width: 100%;
+  flex-shrink: 0;
+}
+
+@media (min-width: 480px) {
+  .actions {
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+
+@media (min-width: 1024px) {
+  .actions {
+    flex-direction: column;
+    width: auto;
+    min-width: 200px;
+  }
+}
+
+.btnWhatsApp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  background: var(--color-whatsapp);
+  color: #fff;
+  font-weight: 600;
+  font-size: clamp(0.875rem, 1.2vw, 1rem);
+  padding: 0.625rem clamp(1rem, 2vw, 1.5rem);
+  border-radius: var(--radius-md);
+  transition: background var(--transition-fast), transform var(--transition-fast);
+  white-space: nowrap;
+}
+
+.btnWhatsApp:hover {
+  background: var(--color-whatsapp-hover);
+  transform: translateY(-1px);
+}
+
+.btnEmail {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  background: transparent;
+  color: #fff;
+  font-weight: 600;
+  font-size: clamp(0.875rem, 1.2vw, 1rem);
+  padding: 0.625rem clamp(1rem, 2vw, 1.5rem);
+  border-radius: var(--radius-md);
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
+  transition: background var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
+  white-space: nowrap;
+}
+
+.btnEmail:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-1px);
+}

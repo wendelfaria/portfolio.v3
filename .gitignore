@@ -1,0 +1,138 @@
+# ============================================
+# Arquivos privados deste projeto (não devem aparecer no GitHub)
+# ============================================
+CLAUDE.md
+
+# ============================================
+# Variáveis de ambiente — NUNCA commitar
+# ============================================
+.env
+.env.local
+.env.development
+.env.development.local
+.env.test
+.env.test.local
+.env.production
+.env.production.local
+*.env
+
+# ============================================
+# Dependências
+# ============================================
+node_modules/
+/.pnp
+.pnp.js
+.yarn/install-state.gz
+
+# ============================================
+# Build / Produção
+# ============================================
+dist/
+dist-ssr/
+build/
+out/
+.vercel/
+.netlify/
+
+# ============================================
+# Cache de ferramentas
+# ============================================
+.cache/
+.parcel-cache/
+.vite/
+.turbo/
+.eslintcache
+.stylelintcache
+*.tsbuildinfo
+
+# ============================================
+# Logs
+# ============================================
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# ============================================
+# Cobertura de testes
+# ============================================
+coverage/
+*.lcov
+.nyc_output/
+
+# ============================================
+# Editores e IDEs
+# ============================================
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.history/
+
+# ============================================
+# Sistema operacional
+# ============================================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# Linux
+*~
+.Trash-*
+
+# ============================================
+# Temporários
+# ============================================
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+
+# ============================================
+# Segredos / chaves (camada extra de proteção)
+# ============================================
+*.pem
+*.key
+*.cert
+*.crt
+*.p12
+*.pfx
+secrets/
+private/
+credentials.json
+service-account*.json
+
+# ============================================
+# Análise / debug
+# ============================================
+.vscode-test/
+*.cpuprofile
+*.heapsnapshot
+
+# ============================================
+# Dependências opcionais
+# ============================================
+.npm
+.eslintcache
+.node_repl_history
+.yarn-integrity

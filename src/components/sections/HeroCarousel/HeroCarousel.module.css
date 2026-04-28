@@ -1,0 +1,319 @@
+/* ─── Seção principal ─── */
+.section {
+  position: relative;
+  /* height fixo para percentagens funcionarem na cadeia flex filho → neto */
+  height: calc(100svh - var(--header-height));
+  min-height: 520px;   /* garante legibilidade em viewports muito baixas */
+  display: flex;
+  flex-direction: column;
+  overflow-x: clip;
+  overflow-y: visible;
+}
+
+/* Gradiente de fundo */
+.bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 50% at 65% 0%, var(--slide-accent-soft, rgba(59,130,246,0.10)) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 40% at 85% 90%, var(--slide-accent-soft, rgba(59,130,246,0.06)) 0%, transparent 60%);
+  transition: background 0.5s ease;
+  pointer-events: none;
+}
+
+/* ─── Embla ─── */
+.embla {
+  flex: 1;
+  overflow: hidden;
+  min-height: 0;
+}
+
+.emblaContainer {
+  display: flex;
+  height: 100%;
+}
+
+.emblaSlide {
+  flex: 0 0 100%;
+  min-width: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding-block: clamp(1rem, 3vh, 2rem) clamp(3.5rem, 5vh, 4.5rem);
+}
+
+/* ─── Layout do conteúdo ─── */
+.content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(2rem, 4vw, 3rem);
+  align-items: center;
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  .content {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 1200px) {
+  .content {
+    grid-template-columns: 55fr 45fr;
+  }
+}
+
+/* ─── Texto ─── */
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.75rem, 2vw, 1.25rem);
+}
+
+.eyebrow {
+  display: inline-block;
+  /* clamp: 11px → 14px */
+  font-size: clamp(0.6875rem, 1vw, 0.875rem);
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-full);
+  border: 1px solid currentColor;
+  width: fit-content;
+  transition: color 0.4s, background 0.4s;
+}
+
+/* ─── Heading fluido — escala suave entre 28px e 56px ─── */
+.heading {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--color-primary);
+  /* mínimo 28px | prefere 5vw | máximo 56px */
+  font-size: clamp(1.75rem, 5vw, 3.5rem);
+}
+
+.accent {
+  transition: color 0.4s;
+}
+
+/* ─── Subheading fluido — escala entre 15px e 18px ─── */
+.subheading {
+  font-size: clamp(0.9375rem, 1.5vw, 1.125rem);
+  color: var(--color-text-muted);
+  line-height: 1.75;
+  max-width: 52ch;
+}
+
+/* ─── CTAs ─── */
+.ctas {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+
+@media (min-width: 400px) {
+  .ctas {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+}
+
+.note {
+  font-size: clamp(0.75rem, 1vw, 0.875rem);
+  color: var(--color-text-muted);
+}
+
+/* ─── Visual / Mockup ─── */
+.visual {
+  position: relative;
+  display: none;
+  justify-content: center;
+  padding-inline: 16px;
+}
+
+@media (min-width: 640px) {
+  .visual {
+    display: flex;
+  }
+}
+
+@media (min-width: 1024px) {
+  .visual {
+    justify-content: flex-end;
+  }
+}
+
+.mockup {
+  width: 100%;
+  /* mockup escala entre 280px e 420px conforme a viewport */
+  max-width: clamp(280px, 35vw, 420px);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+
+.browserBar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-bg-alt);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+}
+
+.dotR { background: #FC5F57; }
+.dotY { background: #FEBC2E; }
+.dotG { background: #28C840; }
+
+.urlBar {
+  flex: 1;
+  text-align: center;
+  font-size: var(--fs-xs);
+  color: var(--color-text-muted);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  padding: 2px var(--space-3);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.screen {
+  padding: var(--space-4);
+}
+
+.screenHero {
+  height: clamp(70px, 10vw, 110px);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-4);
+  transition: background 0.4s;
+}
+
+.screenBody {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.screenLine {
+  height: 9px;
+  background: var(--color-border);
+  border-radius: var(--radius-full);
+  width: 100%;
+}
+
+.screenBtn {
+  height: 30px;
+  width: 100px;
+  border-radius: var(--radius-md);
+  margin-top: var(--space-2);
+  transition: background 0.4s;
+}
+
+/* ─── Float cards ─── */
+.floatCard {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-2) var(--space-3);
+  box-shadow: var(--shadow-md);
+  font-size: clamp(0.75rem, 1vw, 0.875rem);
+  font-weight: 600;
+  color: var(--color-primary);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.floatCard1 {
+  bottom: 18%;
+  left: 0;
+}
+
+.floatCard2 {
+  top: 12%;
+  right: 0;
+}
+
+.floatIcon {
+  font-size: var(--fs-base);
+}
+
+/* ─── Controles (dots + setas) ─── */
+.controls {
+  position: absolute;
+  bottom: var(--space-6);
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-6);
+}
+
+/* Dots */
+.dots {
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+}
+
+.dot2 {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
+  background: var(--color-border);
+  border: none;
+  cursor: pointer;
+  transition: background var(--transition-base), width var(--transition-base);
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.dotActive {
+  width: 24px;
+  background: var(--slide-accent, var(--color-accent));
+}
+
+/* Setas */
+.arrows {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.arrow {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
+  box-shadow: var(--shadow-sm);
+}
+
+.arrow:hover {
+  background: var(--color-bg-alt);
+  color: var(--color-primary);
+  border-color: var(--color-accent);
+}

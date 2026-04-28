@@ -1,0 +1,9 @@
+.container {
+  width: 100%;
+  /* 1200px é o sweet spot: centralizado em 1900px com gutters confortáveis */
+  max-width: 1200px;
+  margin-inline: auto;
+
+  /* Padding fluido: 1rem em mobile até 3rem em desktop */
+  padding-inline: clamp(1rem, 4vw, 3rem);
+}

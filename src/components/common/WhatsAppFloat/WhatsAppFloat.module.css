@@ -1,0 +1,60 @@
+.float {
+  position: fixed;
+  bottom: var(--space-6);
+  right: var(--space-6);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  background-color: var(--color-whatsapp);
+  color: #fff;
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-lg);
+  transition:
+    background-color var(--transition-fast),
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.float:hover {
+  background-color: var(--color-whatsapp-hover);
+  transform: scale(1.08);
+  box-shadow: 0 16px 40px rgba(37, 211, 102, 0.35);
+}
+
+.float:active {
+  transform: scale(0.96);
+}
+
+/* Tooltip acessível */
+.tooltip {
+  position: absolute;
+  right: calc(100% + var(--space-3));
+  background-color: var(--color-primary);
+  color: #fff;
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-md);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-fast);
+}
+
+.tooltip::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  transform: translateY(-50%);
+  border: 5px solid transparent;
+  border-left-color: var(--color-primary);
+}
+
+.float:hover .tooltip,
+.float:focus-visible .tooltip {
+  opacity: 1;
+}
