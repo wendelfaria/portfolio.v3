@@ -12,7 +12,7 @@
 .bg {
   position: absolute;
   inset: 0;
-  background-image: url('@/assets/images/hero-background.png');
+  background-image: url('@/assets/images/hero-background.webp');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
