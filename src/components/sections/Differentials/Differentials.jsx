@@ -1,5 +1,6 @@
 import { Zap, Shield, Search, Smartphone, Code, Clock } from 'lucide-react'
 import Container from '@/components/layout/Container/Container'
+import Reveal from '@/components/common/Reveal/Reveal'
 import styles from './Differentials.module.css'
 
 const items = [
@@ -39,27 +40,31 @@ export default function Differentials() {
   return (
     <section className={styles.section} aria-labelledby="diff-heading">
       <Container>
-        <div className={styles.header}>
-          <p className={styles.label}>Por que escolher</p>
-          <h2 id="diff-heading" className={styles.heading}>
-            Diferenciais que fazem a diferença
-          </h2>
-          <p className={styles.subheading}>
-            Não faço sites "mais ou menos". Cada projeto recebe atenção total em cada detalhe que importa para o seu sucesso.
-          </p>
-        </div>
+        <Reveal>
+          <div className={styles.header}>
+            <p className={styles.label}>Por que escolher</p>
+            <h2 id="diff-heading" className={styles.heading}>
+              Diferenciais que fazem a diferença
+            </h2>
+            <p className={styles.subheading}>
+              Não faço sites "mais ou menos". Cada projeto recebe atenção total em cada detalhe que importa para o seu sucesso.
+            </p>
+          </div>
+        </Reveal>
 
         <ul className={styles.grid} aria-label="Diferenciais">
-          {items.map(({ Icon, title, description }) => (
-            <li key={title} className={styles.item}>
-              <div className={styles.iconWrap} aria-hidden="true">
-                <Icon size={24} strokeWidth={1.75} />
-              </div>
-              <div>
-                <h3 className={styles.itemTitle}>{title}</h3>
-                <p className={styles.itemDesc}>{description}</p>
-              </div>
-            </li>
+          {items.map(({ Icon, title, description }, i) => (
+            <Reveal key={title} delay={i * 60}>
+              <li className={styles.item}>
+                <div className={styles.iconWrap} aria-hidden="true">
+                  <Icon size={24} strokeWidth={1.75} />
+                </div>
+                <div>
+                  <h3 className={styles.itemTitle}>{title}</h3>
+                  <p className={styles.itemDesc}>{description}</p>
+                </div>
+              </li>
+            </Reveal>
           ))}
         </ul>
       </Container>

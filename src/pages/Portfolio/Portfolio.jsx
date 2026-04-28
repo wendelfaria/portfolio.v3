@@ -5,15 +5,28 @@ import Container from '@/components/layout/Container/Container'
 import ProjectCard from '@/components/ui/ProjectCard/ProjectCard'
 import Button from '@/components/ui/Button/Button'
 import ContactCTA from '@/components/sections/ContactCTA/ContactCTA'
+import { useCountUp } from '@/hooks/useCountUp'
 import { projects } from '@/data/projects'
 import { services } from '@/data/services'
 import styles from './Portfolio.module.css'
 
 const stats = [
-  { value: `${services.length}`, label: 'Segmentos atendidos' },
-  { value: '15 dias', label: 'Prazo médio de entrega' },
-  { value: '100%', label: 'Código próprio, sem templates' },
+  { numeric: services.length, suffix: '', label: 'Segmentos atendidos' },
+  { numeric: 15, suffix: ' dias', label: 'Prazo médio de entrega' },
+  { numeric: 100, suffix: '%', label: 'Código próprio, sem templates' },
 ]
+
+function StatItem({ numeric, suffix, label }) {
+  const { ref, count } = useCountUp(numeric)
+  return (
+    <li ref={ref} className={styles.statItem}>
+      <span className={styles.statValue} aria-label={`${numeric}${suffix}`}>
+        {count}{suffix}
+      </span>
+      <span className={styles.statLabel}>{label}</span>
+    </li>
+  )
+}
 
 export default function Portfolio() {
   return (
@@ -34,11 +47,8 @@ export default function Portfolio() {
               Sites reais, para profissionais reais. Cada projeto foi construído do zero com atenção total à performance, segurança e conversão.
             </p>
             <ul className={styles.stats} aria-label="Destaques do portfólio">
-              {stats.map(({ value, label }) => (
-                <li key={label} className={styles.statItem}>
-                  <span className={styles.statValue}>{value}</span>
-                  <span className={styles.statLabel}>{label}</span>
-                </li>
+              {stats.map((stat) => (
+                <StatItem key={stat.label} {...stat} />
               ))}
             </ul>
           </div>

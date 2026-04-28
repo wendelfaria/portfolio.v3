@@ -21,8 +21,10 @@ export default function Button({
     .filter(Boolean)
     .join(' ')
 
+  const defaultType = Tag === 'button' ? { type: 'button' } : {}
+
   return (
-    <Tag className={classes} {...props}>
+    <Tag className={classes} {...defaultType} {...props}>
       {children}
     </Tag>
   )

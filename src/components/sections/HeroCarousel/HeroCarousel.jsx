@@ -28,10 +28,10 @@ const slides = [
     headingAccent: 'pacientes agendados',
     subheading:
       'Sites que destacam seus procedimentos, apresentam sua equipe e facilitam o agendamento — gerando consultas qualificadas todos os dias.',
-    accent: '#0EA5E9',
-    accentSoft: 'rgba(14,165,233,0.10)',
-    mockupColor: '#0369A1',
-    mockupAccent: '#38BDF8',
+    accent: '#10B981',
+    accentSoft: 'rgba(16,185,129,0.10)',
+    mockupColor: '#064E3B',
+    mockupAccent: '#34D399',
     stat1: { icon: '📅', label: 'Agendamentos online' },
     stat2: { icon: '⭐', label: 'Credibilidade clínica' },
   },
@@ -42,10 +42,10 @@ const slides = [
     headingAccent: 'gera consultas qualificadas',
     subheading:
       'Sites que transmitem autoridade, especialização e seriedade — para o cliente já chegar até você convicto de que você é a escolha certa.',
-    accent: '#6366F1',
-    accentSoft: 'rgba(99,102,241,0.10)',
-    mockupColor: '#3730A3',
-    mockupAccent: '#818CF8',
+    accent: '#F59E0B',
+    accentSoft: 'rgba(245,158,11,0.10)',
+    mockupColor: '#78350F',
+    mockupAccent: '#FCD34D',
     stat1: { icon: '⚖️', label: 'Autoridade transmitida' },
     stat2: { icon: '📈', label: 'Leads qualificados' },
   },
@@ -56,10 +56,10 @@ const slides = [
     headingAccent: 'conquiste mais alunos',
     subheading:
       'Landing pages de impacto que mostram sua metodologia, cases de sucesso e facilitam o agendamento de uma aula experimental.',
-    accent: '#10B981',
-    accentSoft: 'rgba(16,185,129,0.10)',
-    mockupColor: '#065F46',
-    mockupAccent: '#34D399',
+    accent: '#22D3EE',
+    accentSoft: 'rgba(34,211,238,0.10)',
+    mockupColor: '#164E63',
+    mockupAccent: '#67E8F9',
     stat1: { icon: '💪', label: 'Metodologia em destaque' },
     stat2: { icon: '🎯', label: 'Conversão garantida' },
   },
@@ -140,17 +140,19 @@ export default function HeroCarousel() {
                     <p className={styles.subheading}>{slide.subheading}</p>
 
                     <div className={styles.ctas}>
-                      <Button
-                        as="a"
-                        href={`https://wa.me/${whatsapp}?text=${message}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        size="lg"
-                        style={{ background: slide.accent }}
-                      >
-                        Quero meu site
-                        <ExternalLink size={18} aria-hidden="true" />
-                      </Button>
+                      {whatsapp && (
+                        <Button
+                          as="a"
+                          href={`https://wa.me/${whatsapp}?text=${message}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          size="lg"
+                          style={{ background: slide.accent }}
+                        >
+                          Quero meu site
+                          <ExternalLink size={18} aria-hidden="true" />
+                        </Button>
+                      )}
 
                       <Button as={Link} to="/portfolio" variant="secondary" size="lg">
                         Ver portfólio

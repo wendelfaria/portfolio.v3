@@ -1,13 +1,16 @@
 .header {
   position: sticky;
   top: 0;
-  z-index: 100;
-  background-color: var(--color-bg);
+  z-index: var(--z-header);
+  background-color: rgba(6, 13, 31, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--color-border);
-  transition: box-shadow var(--transition-base);
+  transition: box-shadow var(--transition-base), background-color var(--transition-base);
 }
 
 .scrolled {
+  background-color: rgba(6, 13, 31, 0.97);
   box-shadow: var(--shadow-md);
 }
 
@@ -27,25 +30,18 @@
   flex-shrink: 0;
 }
 
-.logoMark {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  background-color: var(--color-accent);
-  color: #fff;
-  border-radius: var(--radius-md);
-  font-family: var(--font-heading);
-  font-size: var(--fs-sm);
-  font-weight: 800;
+.logoImg {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  flex-shrink: 0;
 }
 
 .logoText {
   font-family: var(--font-heading);
   font-size: var(--fs-base);
   font-weight: 700;
-  color: var(--color-primary);
+  color: var(--color-text);
 }
 
 /* 375px+ — mostrar nome completo */
@@ -79,8 +75,8 @@
 }
 
 .navLink:hover {
-  color: var(--color-primary);
-  background-color: var(--color-bg-alt);
+  color: var(--color-text);
+  background-color: var(--color-surface);
 }
 
 .navLink.active {
@@ -103,27 +99,29 @@
   justify-content: center;
   width: 40px;
   height: 40px;
-  color: var(--color-primary);
+  color: var(--color-text);
   border-radius: var(--radius-md);
   transition: background-color var(--transition-fast);
 }
 
 .hamburger:hover {
-  background-color: var(--color-bg-alt);
+  background-color: var(--color-surface);
 }
 
 /* ── Mobile nav ── */
 .mobileNav {
   position: fixed;
   inset: var(--header-height) 0 0 0;
-  background-color: var(--color-bg);
+  background-color: rgba(6, 13, 31, 0.97);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   padding: var(--space-8) var(--space-6);
   display: flex;
   flex-direction: column;
   transform: translateX(100%);
   transition: transform var(--transition-base);
   overflow-y: auto;
-  z-index: 99;
+  z-index: var(--z-mobile-nav);
 }
 
 .mobileNavOpen {
@@ -150,7 +148,7 @@
 .mobileNavLink:hover,
 .mobileNavLink.active {
   color: var(--color-accent);
-  background-color: #EFF6FF;
+  background-color: var(--color-surface-hover);
 }
 
 .mobileCta {
@@ -170,6 +168,10 @@
   }
 
   .hamburger {
+    display: none;
+  }
+
+  .mobileNav {
     display: none;
   }
 }

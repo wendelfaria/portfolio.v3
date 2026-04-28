@@ -1,13 +1,17 @@
 :root {
   /* ── Cores ── */
-  --color-primary: #0F172A;
+  --color-primary: #060D1F;
   --color-accent: #3B82F6;
   --color-accent-hover: #2563EB;
-  --color-bg: #FFFFFF;
-  --color-bg-alt: #F8FAFC;
-  --color-text: #0F172A;
-  --color-text-muted: #475569;
-  --color-border: #E2E8F0;
+  --color-accent-glow: rgba(59, 130, 246, 0.25);
+  --color-bg: #060D1F;
+  --color-bg-alt: #0D1B35;
+  --color-surface: #0D1B35;
+  --color-surface-hover: #122040;
+  --color-text: #F1F5F9;
+  --color-text-muted: #94A3B8;
+  --color-border: rgba(59, 130, 246, 0.15);
+  --color-border-subtle: rgba(241, 245, 249, 0.08);
   --color-success: #10B981;
   --color-error: #EF4444;
   --color-whatsapp: #25D366;
@@ -47,14 +51,30 @@
   --radius-full: 9999px;
 
   /* ── Sombras ── */
-  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.05);
-  --shadow-md: 0 4px 12px rgba(15, 23, 42, 0.08);
-  --shadow-lg: 0 12px 32px rgba(15, 23, 42, 0.12);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.5);
+  --shadow-accent: 0 0 24px rgba(59, 130, 246, 0.2);
 
   /* ── Transições ── */
   --transition-fast: 150ms ease;
   --transition-base: 250ms ease;
   --transition-slow: 400ms ease;
+
+  /* ── Z-index ── */
+  --z-base: 0;
+  --z-raised: 10;
+  --z-dropdown: 50;
+  --z-mobile-nav: 99;
+  --z-header: 100;
+  --z-float: 200;
+  --z-modal: 300;
+
+  /* ── Line-height ── */
+  --lh-tight: 1.2;
+  --lh-snug: 1.4;
+  --lh-normal: 1.6;
+  --lh-relaxed: 1.75;
 
   /* ── Header ── */
   --header-height: 72px;

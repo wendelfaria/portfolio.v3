@@ -3,18 +3,47 @@
   padding-top: calc(var(--header-height) + var(--space-16));
   padding-bottom: var(--space-24);
   overflow: hidden;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
 }
 
-/* Gradiente de fundo */
+/* Imagem de fundo */
 .bg {
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse 80% 60% at 60% 0%, rgba(59, 130, 246, 0.08) 0%, transparent 70%),
-    radial-gradient(ellipse 40% 40% at 90% 80%, rgba(59, 130, 246, 0.05) 0%, transparent 60%);
+  background-image: url('@/assets/images/hero-background.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   pointer-events: none;
 }
 
+/* Overlay escuro sobre a imagem para contraste do texto */
+.bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    rgba(6, 13, 31, 0.92) 0%,
+    rgba(6, 13, 31, 0.75) 50%,
+    rgba(6, 13, 31, 0.55) 100%
+  );
+}
+
+/* Glow azul sutil no topo */
+.bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 50% at 30% 10%, rgba(59, 130, 246, 0.12) 0%, transparent 70%);
+  z-index: 1;
+}
+
 .content {
+  position: relative;
+  z-index: 2;
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--space-12);
@@ -28,7 +57,7 @@
   }
 }
 
-/* Texto */
+/* ── Texto ── */
 .text {
   display: flex;
   flex-direction: column;
@@ -42,10 +71,10 @@
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--color-accent);
-  background: rgba(59, 130, 246, 0.08);
+  background: rgba(59, 130, 246, 0.12);
   padding: var(--space-1) var(--space-3);
   border-radius: var(--radius-full);
-  border: 1px solid rgba(59, 130, 246, 0.2);
+  border: 1px solid rgba(59, 130, 246, 0.3);
   width: fit-content;
 }
 
@@ -53,7 +82,7 @@
   font-size: var(--fs-4xl);
   font-weight: 800;
   line-height: 1.1;
-  color: var(--color-primary);
+  color: var(--color-text);
 }
 
 @media (min-width: 768px) {
@@ -70,7 +99,7 @@
 
 .accent {
   color: var(--color-accent);
-  position: relative;
+  text-shadow: 0 0 32px rgba(59, 130, 246, 0.4);
 }
 
 .subheading {
@@ -90,9 +119,10 @@
 .note {
   font-size: var(--fs-sm);
   color: var(--color-text-muted);
+  opacity: 0.8;
 }
 
-/* Visual / mockup */
+/* ── Visual / mockup ── */
 .visual {
   position: relative;
   display: flex;
@@ -102,10 +132,12 @@
 .mockup {
   width: 100%;
   max-width: 460px;
-  background: var(--color-bg);
+  background: rgba(13, 27, 53, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-lg);
+  box-shadow: var(--shadow-lg), var(--shadow-accent);
   overflow: hidden;
 }
 
@@ -114,7 +146,7 @@
   align-items: center;
   gap: var(--space-2);
   padding: var(--space-3) var(--space-4);
-  background: var(--color-bg-alt);
+  background: rgba(6, 13, 31, 0.6);
   border-bottom: 1px solid var(--color-border);
 }
 
@@ -134,7 +166,7 @@
   text-align: center;
   font-size: var(--fs-xs);
   color: var(--color-text-muted);
-  background: var(--color-bg);
+  background: rgba(6, 13, 31, 0.5);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-full);
   padding: var(--space-1) var(--space-3);
@@ -146,9 +178,10 @@
 
 .screenHero {
   height: 100px;
-  background: linear-gradient(135deg, var(--color-primary) 0%, #1E293B 100%);
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.3) 0%, rgba(13, 27, 53, 0.8) 100%);
   border-radius: var(--radius-md);
   margin-bottom: var(--space-4);
+  border: 1px solid var(--color-border);
 }
 
 .screenBody {
@@ -170,22 +203,25 @@
   background: var(--color-accent);
   border-radius: var(--radius-md);
   margin-top: var(--space-2);
+  box-shadow: 0 0 16px rgba(59, 130, 246, 0.4);
 }
 
-/* Cards flutuantes */
+/* ── Cards flutuantes ── */
 .floatCard {
   position: absolute;
   display: flex;
   align-items: center;
   gap: var(--space-2);
-  background: var(--color-bg);
+  background: rgba(13, 27, 53, 0.9);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   padding: var(--space-2) var(--space-3);
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--shadow-md), var(--shadow-accent);
   font-size: var(--fs-sm);
   font-weight: 600;
-  color: var(--color-primary);
+  color: var(--color-text);
   white-space: nowrap;
 }
 

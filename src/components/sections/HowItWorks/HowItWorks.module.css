@@ -23,7 +23,7 @@
 .heading {
   font-size: clamp(1.375rem, 2.5vw, 2rem);
   font-weight: 800;
-  color: var(--color-primary);
+  color: var(--color-text);
 }
 
 .subheading {
@@ -84,7 +84,7 @@
 .stepTitle {
   font-size: clamp(0.9375rem, 1.3vw, 1.0625rem);
   font-weight: 700;
-  color: var(--color-primary);
+  color: var(--color-text);
   margin-bottom: var(--space-1);
 }
 

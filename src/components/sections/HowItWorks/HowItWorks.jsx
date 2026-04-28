@@ -1,4 +1,5 @@
 import Container from '@/components/layout/Container/Container'
+import Reveal from '@/components/common/Reveal/Reveal'
 import styles from './HowItWorks.module.css'
 
 const steps = [
@@ -33,26 +34,30 @@ export default function HowItWorks() {
   return (
     <section className={styles.section} aria-labelledby="how-heading">
       <Container>
-        <div className={styles.header}>
-          <p className={styles.label}>Como trabalho</p>
-          <h2 id="how-heading" className={styles.heading}>
-            Do briefing ao site no ar
-          </h2>
-          <p className={styles.subheading}>
-            Um processo claro e transparente, sem surpresas — para que você saiba exatamente o que esperar em cada etapa.
-          </p>
-        </div>
+        <Reveal>
+          <div className={styles.header}>
+            <p className={styles.label}>Como trabalho</p>
+            <h2 id="how-heading" className={styles.heading}>
+              Do briefing ao site no ar
+            </h2>
+            <p className={styles.subheading}>
+              Um processo claro e transparente, sem surpresas — para que você saiba exatamente o que esperar em cada etapa.
+            </p>
+          </div>
+        </Reveal>
 
         <ol className={styles.steps} aria-label="Etapas do processo">
           {steps.map((step, i) => (
-            <li key={step.number} className={styles.step}>
-              <div className={styles.stepNumber} aria-hidden="true">{step.number}</div>
-              {i < steps.length - 1 && <div className={styles.connector} aria-hidden="true" />}
-              <div className={styles.stepContent}>
-                <h3 className={styles.stepTitle}>{step.title}</h3>
-                <p className={styles.stepDesc}>{step.description}</p>
-              </div>
-            </li>
+            <Reveal key={step.number} delay={i * 80}>
+              <li className={styles.step}>
+                <div className={styles.stepNumber} aria-hidden="true">{step.number}</div>
+                {i < steps.length - 1 && <div className={styles.connector} aria-hidden="true" />}
+                <div className={styles.stepContent}>
+                  <h3 className={styles.stepTitle}>{step.title}</h3>
+                  <p className={styles.stepDesc}>{step.description}</p>
+                </div>
+              </li>
+            </Reveal>
           ))}
         </ol>
       </Container>

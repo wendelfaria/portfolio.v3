@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react'
+import { createPortal } from 'react-dom'
 import { NavLink, Link } from 'react-router-dom'
 import { Menu, X } from 'lucide-react'
 import Container from '@/components/layout/Container/Container'
 import Button from '@/components/ui/Button/Button'
+import logoWf from '@/assets/images/logo-wf.png'
 import styles from './Header.module.css'
 
 const navLinks = [
@@ -29,104 +31,120 @@ export default function Header() {
     return () => { document.body.style.overflow = '' }
   }, [menuOpen])
 
+  /* Fecha o menu ao redimensionar para desktop */
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) setMenuOpen(false)
+    }
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
   const closeMenu = () => setMenuOpen(false)
 
   const whatsapp = import.meta.env.VITE_WHATSAPP_NUMBER
   const message = encodeURIComponent('Olá, Wendel! Vim pelo seu portfólio e gostaria de solicitar um orçamento.')
 
-  return (
-    <header className={[styles.header, scrolled && styles.scrolled].filter(Boolean).join(' ')}>
-      <Container>
-        <div className={styles.inner}>
-          {/* Logo */}
-          <Link to="/" className={styles.logo} onClick={closeMenu} aria-label="Wendel Faria — página inicial">
-            <span className={styles.logoMark}>WF</span>
-            <span className={styles.logoText}>Wendel Faria</span>
-          </Link>
+  const mobileNav = (
+    <div
+      id="mobile-nav"
+      className={[styles.mobileNav, menuOpen && styles.mobileNavOpen].filter(Boolean).join(' ')}
+      aria-hidden={!menuOpen}
+    >
+      <nav aria-label="Navegação mobile">
+        <ul className={styles.mobileNavList}>
+          {navLinks.map(({ to, label, end }) => (
+            <li key={to}>
+              <NavLink
+                to={to}
+                end={end}
+                className={({ isActive }) =>
+                  [styles.mobileNavLink, isActive && styles.active].filter(Boolean).join(' ')
+                }
+                onClick={closeMenu}
+              >
+                {label}
+              </NavLink>
+            </li>
+          ))}
+        </ul>
 
-          {/* Nav desktop */}
-          <nav className={styles.nav} aria-label="Navegação principal">
-            <ul className={styles.navList}>
-              {navLinks.map(({ to, label, end }) => (
-                <li key={to}>
-                  <NavLink
-                    to={to}
-                    end={end}
-                    className={({ isActive }) =>
-                      [styles.navLink, isActive && styles.active].filter(Boolean).join(' ')
-                    }
-                  >
-                    {label}
-                  </NavLink>
-                </li>
-              ))}
-            </ul>
-          </nav>
-
-          {/* CTA desktop */}
-          <div className={styles.cta}>
-            <Button
-              as="a"
-              href={`https://wa.me/${whatsapp}?text=${message}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              size="sm"
-            >
-              Solicitar orçamento
-            </Button>
-          </div>
-
-          {/* Botão hamburger */}
-          <button
-            className={styles.hamburger}
-            onClick={() => setMenuOpen((prev) => !prev)}
-            aria-expanded={menuOpen}
-            aria-controls="mobile-nav"
-            aria-label={menuOpen ? 'Fechar menu' : 'Abrir menu'}
+        <div className={styles.mobileCta}>
+          <Button
+            as="a"
+            href={`https://wa.me/${whatsapp}?text=${message}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            size="lg"
+            onClick={closeMenu}
           >
-            {menuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+            Solicitar orçamento
+          </Button>
         </div>
-      </Container>
+      </nav>
+    </div>
+  )
 
-      {/* Nav mobile */}
-      <div
-        id="mobile-nav"
-        className={[styles.mobileNav, menuOpen && styles.mobileNavOpen].filter(Boolean).join(' ')}
-        aria-hidden={!menuOpen}
-      >
-        <nav aria-label="Navegação mobile">
-          <ul className={styles.mobileNavList}>
-            {navLinks.map(({ to, label, end }) => (
-              <li key={to}>
-                <NavLink
-                  to={to}
-                  end={end}
-                  className={({ isActive }) =>
-                    [styles.mobileNavLink, isActive && styles.active].filter(Boolean).join(' ')
-                  }
-                  onClick={closeMenu}
-                >
-                  {label}
-                </NavLink>
-              </li>
-            ))}
-          </ul>
+  return (
+    <>
+      <header className={[styles.header, scrolled && styles.scrolled].filter(Boolean).join(' ')}>
+        <Container>
+          <div className={styles.inner}>
+            {/* Logo */}
+            <Link to="/" className={styles.logo} onClick={closeMenu} aria-label="Wendel Faria — página inicial">
+              <img src={logoWf} alt="Logo WF" className={styles.logoImg} />
+              <span className={styles.logoText}>Wendel Faria</span>
+            </Link>
 
-          <div className={styles.mobileCta}>
-            <Button
-              as="a"
-              href={`https://wa.me/${whatsapp}?text=${message}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              size="lg"
-              onClick={closeMenu}
+            {/* Nav desktop */}
+            <nav className={styles.nav} aria-label="Navegação principal">
+              <ul className={styles.navList}>
+                {navLinks.map(({ to, label, end }) => (
+                  <li key={to}>
+                    <NavLink
+                      to={to}
+                      end={end}
+                      className={({ isActive }) =>
+                        [styles.navLink, isActive && styles.active].filter(Boolean).join(' ')
+                      }
+                    >
+                      {label}
+                    </NavLink>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+
+            {/* CTA desktop */}
+            <div className={styles.cta}>
+              <Button
+                as="a"
+                href={`https://wa.me/${whatsapp}?text=${message}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                size="sm"
+              >
+                Solicitar orçamento
+              </Button>
+            </div>
+
+            {/* Botão hamburger */}
+            <button
+              type="button"
+              className={styles.hamburger}
+              onClick={() => setMenuOpen((prev) => !prev)}
+              aria-expanded={menuOpen}
+              aria-controls="mobile-nav"
+              aria-label={menuOpen ? 'Fechar menu' : 'Abrir menu'}
             >
-              Solicitar orçamento
-            </Button>
+              {menuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
           </div>
-        </nav>
-      </div>
-    </header>
+        </Container>
+      </header>
+
+      {/* Nav mobile renderizado direto no body — evita conflito com backdrop-filter do header */}
+      {createPortal(mobileNav, document.body)}
+    </>
   )
 }

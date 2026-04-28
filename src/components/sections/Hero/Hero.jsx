@@ -32,16 +32,18 @@ export default function Hero() {
             </p>
 
             <div className={styles.ctas}>
-              <Button
-                as="a"
-                href={`https://wa.me/${whatsapp}?text=${message}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                size="lg"
-              >
-                Quero meu site
-                <ExternalLink size={18} aria-hidden="true" />
-              </Button>
+              {whatsapp && (
+                <Button
+                  as="a"
+                  href={`https://wa.me/${whatsapp}?text=${message}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  size="lg"
+                >
+                  Quero meu site
+                  <ExternalLink size={18} aria-hidden="true" />
+                </Button>
+              )}
 
               <Button as={Link} to="/portfolio" variant="secondary" size="lg">
                 Ver portfólio

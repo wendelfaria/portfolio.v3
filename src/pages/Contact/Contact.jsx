@@ -1,6 +1,8 @@
 import { MessageCircle, Mail, Github, Linkedin, Instagram, Clock } from 'lucide-react'
 import SEOHead from '@/components/common/SEOHead/SEOHead'
 import Container from '@/components/layout/Container/Container'
+import Toast from '@/components/common/Toast/Toast'
+import { useToast } from '@/hooks/useToast'
 import styles from './Contact.module.css'
 
 const socials = [
@@ -31,6 +33,19 @@ export default function Contact() {
     'Olá, Wendel! Vim pelo seu portfólio e gostaria de solicitar um orçamento para minha landing page.',
   )
 
+  const { toast, show } = useToast()
+
+  const copyEmail = async (e) => {
+    e.preventDefault()
+    try {
+      await navigator.clipboard.writeText(email)
+      show('E-mail copiado!')
+    } catch {
+      // Clipboard bloqueado (ex: contexto sem HTTPS) — fallback para mailto
+      window.location.href = `mailto:${email}?subject=Orçamento%20de%20Landing%20Page`
+    }
+  }
+
   return (
     <>
       <SEOHead
@@ -60,13 +75,10 @@ export default function Contact() {
                   Chamar no WhatsApp
                 </a>
               )}
-              <a
-                href={`mailto:${email}?subject=Orçamento%20de%20Landing%20Page`}
-                className={styles.ctaEmail}
-              >
+              <button type="button" onClick={copyEmail} className={styles.ctaEmail}>
                 <Mail size={20} aria-hidden="true" />
-                Enviar e-mail
-              </a>
+                Copiar e-mail
+              </button>
             </div>
             <p className={styles.heroNote}>
               <Clock size={14} aria-hidden="true" />
@@ -102,9 +114,12 @@ export default function Contact() {
                 </a>
               )}
 
-              <a
-                href={`mailto:${email}?subject=Orçamento%20de%20Landing%20Page`}
+              {/* Card de e-mail — clique copia para clipboard */}
+              <button
+                type="button"
+                onClick={copyEmail}
                 className={styles.channelCard}
+                aria-label={`Copiar e-mail ${email}`}
               >
                 <div className={styles.channelIcon} style={{ background: 'rgba(59,130,246,0.1)', color: 'var(--color-accent)' }}>
                   <Mail size={28} aria-hidden="true" />
@@ -112,9 +127,9 @@ export default function Contact() {
                 <div>
                   <p className={styles.channelTitle}>E-mail</p>
                   <p className={styles.channelDesc}>{email}</p>
-                  <span className={styles.channelLink}>Enviar e-mail →</span>
+                  <span className={styles.channelLink}>Clique para copiar →</span>
                 </div>
-              </a>
+              </button>
 
               <div className={styles.responseTime}>
                 <Clock size={16} aria-hidden="true" />
@@ -147,6 +162,8 @@ export default function Contact() {
           </div>
         </Container>
       </section>
+
+      <Toast toast={toast} />
     </>
   )
 }

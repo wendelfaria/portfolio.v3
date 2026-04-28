@@ -1,8 +1,11 @@
+import { memo, useState } from 'react'
 import { ExternalLink } from 'lucide-react'
 import Badge from '@/components/ui/Badge/Badge'
 import styles from './ProjectCard.module.css'
 
-export default function ProjectCard({ title, niche, description, image, liveUrl, tags = [] }) {
+const ProjectCard = memo(function ProjectCard({ title, niche, description, image, liveUrl, tags = [] }) {
+  const [loaded, setLoaded] = useState(false)
+
   return (
     <article className={styles.card}>
       <div className={styles.imageWrap}>
@@ -10,10 +13,11 @@ export default function ProjectCard({ title, niche, description, image, liveUrl,
           <img
             src={image}
             alt={`Screenshot do projeto ${title}`}
-            className={styles.image}
+            className={[styles.image, loaded && styles.imageLoaded].filter(Boolean).join(' ')}
             loading="lazy"
             width={600}
             height={400}
+            onLoad={() => setLoaded(true)}
           />
         ) : (
           <div className={styles.imagePlaceholder} aria-hidden="true">
@@ -54,4 +58,6 @@ export default function ProjectCard({ title, niche, description, image, liveUrl,
       </div>
     </article>
   )
-}
+})
+
+export default ProjectCard

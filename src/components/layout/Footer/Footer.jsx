@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { Github, Linkedin, Instagram, Mail } from 'lucide-react'
 import Container from '@/components/layout/Container/Container'
+import logoWf from '@/assets/images/logo-wf.png'
 import styles from './Footer.module.css'
 
 const navLinks = [
@@ -45,7 +46,7 @@ export default function Footer() {
           {/* Coluna marca */}
           <div className={styles.brand}>
             <Link to="/" className={styles.logo} aria-label="Wendel Faria — página inicial">
-              <span className={styles.logoMark}>WF</span>
+              <img src={logoWf} alt="Logo WF" className={styles.logoImg} />
               <span className={styles.logoText}>Wendel Faria</span>
             </Link>
             <p className={styles.tagline}>

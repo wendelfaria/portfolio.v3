@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import {
   Heart, Smile, Scale, Dumbbell, Target, TrendingUp,
   Leaf, Activity, Layers, Building2, Globe,
@@ -9,7 +10,7 @@ const iconMap = {
   Leaf, Activity, Layers, Building2, Globe,
 }
 
-export default function ServiceCard({ name, description, icon }) {
+const ServiceCard = memo(function ServiceCard({ name, description, icon }) {
   const Icon = iconMap[icon] ?? Globe
 
   return (
@@ -21,4 +22,6 @@ export default function ServiceCard({ name, description, icon }) {
       <p className={styles.description}>{description}</p>
     </article>
   )
-}
+})
+
+export default ServiceCard

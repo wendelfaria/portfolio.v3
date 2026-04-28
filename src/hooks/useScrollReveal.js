@@ -3,6 +3,8 @@ import { useEffect, useRef, useState } from 'react'
 export function useScrollReveal(options = {}) {
   const ref = useRef(null)
   const [isVisible, setIsVisible] = useState(false)
+  // Stabilize options so callers can pass object literals without causing re-runs
+  const optionsRef = useRef(options)
 
   useEffect(() => {
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -18,7 +20,7 @@ export function useScrollReveal(options = {}) {
           observer.disconnect()
         }
       },
-      { threshold: 0.1, rootMargin: '0px 0px -50px 0px', ...options },
+      { threshold: 0.1, rootMargin: '0px 0px -50px 0px', ...optionsRef.current },
     )
 
     const el = ref.current
@@ -27,7 +29,7 @@ export function useScrollReveal(options = {}) {
     return () => {
       if (el) observer.unobserve(el)
     }
-  }, [options])
+  }, [])
 
   return { ref, isVisible }
 }
