@@ -6,8 +6,11 @@ body {
   font-size: var(--fs-base);
   color: var(--color-text);
   background-color: var(--color-bg);
-  /* Garante scroll suave apenas quando não reduzido */
   scroll-behavior: smooth;
+}
+
+main {
+  padding-top: var(--header-height);
 }
 
 /* Utilitários de espaçamento de seção — mobile-first */
